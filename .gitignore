@@ -1,0 +1,5 @@
+.idea
+.credentials
+.byebug_history
+.ruby-version
+client_secret.json
