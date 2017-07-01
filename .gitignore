@@ -2,4 +2,5 @@
 .credentials
 .byebug_history
 .ruby-version
+*.swp
 client_secret.json
