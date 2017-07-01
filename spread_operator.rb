@@ -11,23 +11,19 @@ class SpreadOperator
                                "sheets.googleapis.com-ruby-quickstart.yaml")
   SCOPE = Google::Apis::SheetsV4::AUTH_SPREADSHEETS_READONLY
 
-  def initialize(spreadsheet_id)
+  def initialize(spreadsheet_id, range)
     @service = Google::Apis::SheetsV4::SheetsService.new
     @service.client_options.application_name = APPLICATION_NAME
     @service.authorization = authorize
     @spreadsheet_id = spreadsheet_id
+    @range = range
   end
 
-  attr_reader :service, :spreadsheet_id
+  attr_reader :service, :spreadsheet_id, :range
   
   def get_values
-    range = 'KPI!A2:E'
     response = service.get_spreadsheet_value(spreadsheet_id, range)
-    puts 'Name, Major:'
-    puts 'No data found.' if response.values.empty?
-    response.values.each do |row|
-      puts "#{row[0]}, #{row[1]}"
-    end
+    response.values
   end
 
   private
